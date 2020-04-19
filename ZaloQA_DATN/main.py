@@ -14,7 +14,7 @@ init_logger()
 logger = logging.getLogger(__name__)
 
 config = {}
-config['batch_size'] = 8
+config['batch_size'] = 32
 config['epochs'] = 5
 config['lr'] = 4e-5
 
