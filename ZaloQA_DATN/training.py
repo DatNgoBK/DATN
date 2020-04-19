@@ -105,7 +105,7 @@ class Training:
             frozen = True
 
             for epoch in tqdm(range(self.epoches), desc="Epoch"):
-
+                self.model.train()
                 if epoch > 0 and frozen:
                     for child in tsfm.children():
                         for param in child.parameters():
@@ -166,24 +166,16 @@ class Training:
                 all_labels.extend(label_id.cpu())
                 all_preds.extend(predictions.cpu())
             
-            all_labels = [self.label_list[la] for la in all_labels]
-            all_preds = [self.label_list[la] for la in all_preds]
             all_labels = np.array(all_labels)
             all_preds = np.array(all_preds)
 
             acc = accuracy_score(all_labels, all_preds)
-            f1_sc = f1_score(all_labels, all_preds, average='micro')
-            f2_sc = f1_score(all_labels, all_preds, average='macro')
-            f3_sc = f1_score(all_labels, all_preds, average='weighted')
+            f1_sc = f1_score(all_labels, all_preds, average='binary')
             self.logger.info('{} acc:{}'.format(des, acc))
             self.logger.info('F1 score : {}'.format(f1_sc))
-            self.logger.info('F1 score_macro : {}'.format(f2_sc))
-            self.logger.info('F1 score_weighted : {}'.format(f3_sc))
-            self.logger.info('Recall score: {}'.format(recall_score(all_labels, all_preds, average='macro')))
-            self.logger.info('Precision score: {}'.format(precision_score(all_labels, all_preds, average='macro')))
-            if f3_sc > self.best_sc and des=='Valid':
+            if f1_sc > self.best_sc and des=='Valid':
               torch.save(self.model.state_dict(), 'models/model-211.bin')
-              self.best_sc = f2_sc
+              self.best_sc = f1_sc
             
             if des=='Valid' or des=='Test':
                 self.logger.info(classification_report(all_labels, all_preds))
