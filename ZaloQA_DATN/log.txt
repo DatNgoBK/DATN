@@ -224,3 +224,327 @@
 04/19/2020 20:30:12 - INFO - __main__ -   F1 score_weighted : 0.7082461995729283
 04/19/2020 20:30:12 - INFO - __main__ -   Recall score: 0.6382023636740618
 04/19/2020 20:30:12 - INFO - __main__ -   Precision score: 0.6752263279825181
+04/21/2020 20:24:14 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt from cache at /home/datngo/.cache/torch/transformers/96435fa287fbf7e469185f1062386e05a075cadbf6838b74da22bf64b080bc32.99bcd55fc66f4f3360bc49ba472b940b8dcf223ea6a345deb969d607ca900729
+04/21/2020 20:24:14 - INFO - vncorenlp.vncorenlp -   Starting server on: http://127.0.0.1:60645
+04/21/2020 20:24:14 - INFO - vncorenlp.vncorenlp -   Server ID: 7001
+04/21/2020 20:24:14 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:24:19 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:24:24 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:24:30 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:24:35 - INFO - vncorenlp.vncorenlp -   The server is now available on: http://127.0.0.1:60645
+04/21/2020 20:25:59 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt from cache at /home/datngo/.cache/torch/transformers/96435fa287fbf7e469185f1062386e05a075cadbf6838b74da22bf64b080bc32.99bcd55fc66f4f3360bc49ba472b940b8dcf223ea6a345deb969d607ca900729
+04/21/2020 20:25:59 - INFO - vncorenlp.vncorenlp -   Starting server on: http://127.0.0.1:59107
+04/21/2020 20:25:59 - INFO - vncorenlp.vncorenlp -   Server ID: 7261
+04/21/2020 20:25:59 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:26:04 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:26:09 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:26:14 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:26:19 - INFO - vncorenlp.vncorenlp -   The server is now available on: http://127.0.0.1:59107
+04/21/2020 20:30:13 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-config.json from cache at /home/datngo/.cache/torch/transformers/45629519f3117b89d89fd9c740073d8e4c1f0a70f9842476185100a8afe715d1.893eae5c77904d1e9175faf98909639d3eb20cc7e13e2be395de9a0d8a0dad52
+04/21/2020 20:30:13 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "directionality": "bidi",
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": true,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 119547
+}
+
+04/21/2020 20:31:47 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt from cache at /home/datngo/.cache/torch/transformers/96435fa287fbf7e469185f1062386e05a075cadbf6838b74da22bf64b080bc32.99bcd55fc66f4f3360bc49ba472b940b8dcf223ea6a345deb969d607ca900729
+04/21/2020 20:31:48 - INFO - vncorenlp.vncorenlp -   Starting server on: http://127.0.0.1:39183
+04/21/2020 20:31:48 - INFO - vncorenlp.vncorenlp -   Server ID: 7671
+04/21/2020 20:31:48 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:31:53 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:31:58 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:32:03 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:32:08 - INFO - vncorenlp.vncorenlp -   The server is now available on: http://127.0.0.1:39183
+04/21/2020 20:35:43 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-config.json from cache at /home/datngo/.cache/torch/transformers/45629519f3117b89d89fd9c740073d8e4c1f0a70f9842476185100a8afe715d1.893eae5c77904d1e9175faf98909639d3eb20cc7e13e2be395de9a0d8a0dad52
+04/21/2020 20:35:43 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "directionality": "bidi",
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": true,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 119547
+}
+
+04/21/2020 20:35:46 - INFO - transformers.modeling_utils -   loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-pytorch_model.bin from cache at /home/datngo/.cache/torch/transformers/5b5b80054cd2c95a946a8e0ce0b93f56326dff9fbda6a6c3e02de3c91c918342.7131dcb754361639a7d5526985f880879c9bfd144b65a0bf50590bddb7de9059
+04/21/2020 20:35:50 - INFO - __main__ -   Preprare data for training
+04/21/2020 20:35:50 - INFO - __main__ -   Start training
+04/21/2020 20:35:50 - INFO - __main__ -   Training Fold_0
+04/21/2020 20:36:25 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt from cache at /home/datngo/.cache/torch/transformers/96435fa287fbf7e469185f1062386e05a075cadbf6838b74da22bf64b080bc32.99bcd55fc66f4f3360bc49ba472b940b8dcf223ea6a345deb969d607ca900729
+04/21/2020 20:36:25 - INFO - vncorenlp.vncorenlp -   Starting server on: http://127.0.0.1:47999
+04/21/2020 20:36:25 - INFO - vncorenlp.vncorenlp -   Server ID: 8149
+04/21/2020 20:36:25 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:36:30 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:36:35 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:36:40 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:36:45 - INFO - vncorenlp.vncorenlp -   The server is now available on: http://127.0.0.1:47999
+04/21/2020 20:40:21 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-config.json from cache at /home/datngo/.cache/torch/transformers/45629519f3117b89d89fd9c740073d8e4c1f0a70f9842476185100a8afe715d1.893eae5c77904d1e9175faf98909639d3eb20cc7e13e2be395de9a0d8a0dad52
+04/21/2020 20:40:21 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "directionality": "bidi",
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": true,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 119547
+}
+
+04/21/2020 20:40:23 - INFO - transformers.modeling_utils -   loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-pytorch_model.bin from cache at /home/datngo/.cache/torch/transformers/5b5b80054cd2c95a946a8e0ce0b93f56326dff9fbda6a6c3e02de3c91c918342.7131dcb754361639a7d5526985f880879c9bfd144b65a0bf50590bddb7de9059
+04/21/2020 20:40:27 - INFO - __main__ -   Preprare data for training
+04/21/2020 20:40:28 - INFO - __main__ -   Start training
+04/21/2020 20:40:28 - INFO - __main__ -   Training Fold_0
+04/21/2020 20:41:07 - INFO - __main__ -   Loss average:0.0065911081757875955
+04/21/2020 20:41:41 - INFO - __main__ -   Loss average:0.0029793482514756235
+04/21/2020 20:42:14 - INFO - __main__ -   Loss average:0.0014582751597280914
+04/21/2020 20:42:47 - INFO - __main__ -   Loss average:0.0008473109426046547
+04/21/2020 20:43:20 - INFO - __main__ -   Loss average:0.001820203310953167
+04/21/2020 20:44:26 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt from cache at /home/datngo/.cache/torch/transformers/96435fa287fbf7e469185f1062386e05a075cadbf6838b74da22bf64b080bc32.99bcd55fc66f4f3360bc49ba472b940b8dcf223ea6a345deb969d607ca900729
+04/21/2020 20:44:26 - INFO - vncorenlp.vncorenlp -   Starting server on: http://127.0.0.1:37311
+04/21/2020 20:44:26 - INFO - vncorenlp.vncorenlp -   Server ID: 8635
+04/21/2020 20:44:26 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:44:31 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:44:36 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:44:41 - INFO - vncorenlp.vncorenlp -   Waiting until the server is available...
+04/21/2020 20:44:47 - INFO - vncorenlp.vncorenlp -   The server is now available on: http://127.0.0.1:37311
+04/21/2020 20:48:38 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-config.json from cache at /home/datngo/.cache/torch/transformers/45629519f3117b89d89fd9c740073d8e4c1f0a70f9842476185100a8afe715d1.893eae5c77904d1e9175faf98909639d3eb20cc7e13e2be395de9a0d8a0dad52
+04/21/2020 20:48:38 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "_num_labels": 2,
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": null,
+  "decoder_start_token_id": null,
+  "directionality": "bidi",
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "min_length": 0,
+  "model_type": "bert",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": true,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 119547
+}
+
+04/21/2020 20:48:40 - INFO - transformers.modeling_utils -   loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-pytorch_model.bin from cache at /home/datngo/.cache/torch/transformers/5b5b80054cd2c95a946a8e0ce0b93f56326dff9fbda6a6c3e02de3c91c918342.7131dcb754361639a7d5526985f880879c9bfd144b65a0bf50590bddb7de9059
+04/21/2020 20:48:46 - INFO - __main__ -   Preprare data for training
+04/21/2020 20:48:47 - INFO - __main__ -   Start training
+04/21/2020 20:48:47 - INFO - __main__ -   Training Fold_0
+04/21/2020 20:49:18 - INFO - __main__ -   Loss average:0.005765029699495524
+04/21/2020 20:49:38 - INFO - __main__ -   Loss average:0.0031175198246590533
+04/21/2020 20:49:57 - INFO - __main__ -   Loss average:0.002154216615860644
+04/21/2020 20:50:16 - INFO - __main__ -   Loss average:0.001213900614854998
+04/21/2020 20:50:36 - INFO - __main__ -   Loss average:0.0004916692565301221
+04/21/2020 20:50:55 - INFO - __main__ -   Loss average:0.0003213908479931747
+04/21/2020 20:51:15 - INFO - __main__ -   Loss average:0.0004119576299071482
+04/21/2020 20:51:34 - INFO - __main__ -   Loss average:0.0005630772658501671
+04/21/2020 20:51:54 - INFO - __main__ -   Loss average:0.0008405113590676565
+04/21/2020 20:52:13 - INFO - __main__ -   Loss average:0.0006140637231039835
+04/21/2020 20:52:33 - INFO - __main__ -   Loss average:0.000234001934474214
+04/21/2020 20:55:52 - INFO - __main__ -   Train acc:0.801294498381877
+04/21/2020 20:55:52 - INFO - __main__ -   F1 score : 0.664113785557987
+04/21/2020 20:56:40 - INFO - __main__ -   Valid acc:0.7998274374460742
+04/21/2020 20:56:40 - INFO - __main__ -   F1 score : 0.6647398843930635

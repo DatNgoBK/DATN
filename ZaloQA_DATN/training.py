@@ -29,28 +29,26 @@ def save_model(filename, clf):
 
 
 class Training:
-    def __init__(self, features, model, logger, label_list, config):
-        self.best_sc = 0
-        self.features = features
-        #self.test_features = test_features
+    def __init__(self, zalo, model, logger, config):
+        self.zalo = zalo
         self.model = model
         self.logger = logger
-        self.epoches = config['epochs']
+        self.epochs = config['epochs']
         self.batch_size = config['batch_size']
-        self.label_list = label_list 
-
-        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.max_seq_length = config['max_seq_length']
         self.lr = config['lr']
-
+        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.best_sc = 0
         self.loss_c = nn.MSELoss() if self.model.num_classes == 1 else nn.CrossEntropyLoss()
 
-    def prepare_dataset_for_train_valid(self, features):
+    def prepare_dataset_for_train_valid(self, features, vietnamese_features):
         input_ids = [feature.input_ids for feature in features]
         input_masks = [feature.input_mask for feature in features]
         segment_ids = [feature.segment_ids for feature in features]
+        ner_ids = [vietnamese_features.ner_ids for vietnamese_features in vietnamese_features]
         labels_id = [feature.label_id for feature in features]
 
-        X_train = [(input_id, input_mask, segment_id) for (input_id, input_mask, segment_id) in zip (input_ids, input_masks, segment_ids)]
+        X_train = [(input_id, input_mask, segment_id, ner_id) for (input_id, input_mask, segment_id, ner_id) in zip (input_ids, input_masks, segment_ids, ner_ids)]
         X_train = np.array(X_train)
         y_train = np.array(labels_id)
         X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=0.2, random_state=2018, stratify=y_train)
@@ -60,7 +58,7 @@ class Training:
 
     def train(self):
         self.logger.info('Preprare data for training')
-        X_train, y_train, X_test, y_test = self.prepare_dataset_for_train_valid(self.features)
+        X_train, y_train, X_test, y_test = self.prepare_dataset_for_train_valid(self.zalo.features, self.zalo.vietnamese_features)
         dataset_test = TensorDataset(torch.LongTensor(X_test), torch.LongTensor(y_test))
         dataset_test = DataLoader(dataset_test, batch_size=self.batch_size)
         splits = list(StratifiedKFold(n_splits=5, shuffle=True, random_state=2018).split(X_train, y_train))
@@ -80,7 +78,6 @@ class Training:
             dataset_valid = DataLoader(dataset_valid, batch_size=self.batch_size)
         
             self.model.to(self.device)
-            all_sen_vecs = []
 
             param_optimizer = list(self.model.named_parameters())
             no_decay = ['bias', 'LayerNorm.bias', 'LayerNorm.weight']
@@ -88,13 +85,12 @@ class Training:
                 {'params': [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)], 'weight_decay': 0.01},
                 {'params': [p for n, p in param_optimizer if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
             ]
-            num_train_optimization_steps = int(self.epoches * len(dataset_train) / 5)
+            num_train_optimization_steps = int(self.epochs * len(dataset_train) / 5)
             optimizer = AdamW(optimizer_grouped_parameters, lr=self.lr, correct_bias=False)  # To reproduce BertAdam specific behavior set correct_bias=False
             scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=100, num_training_steps=num_train_optimization_steps)  # PyTorch scheduler
             scheduler0 = get_constant_schedule(optimizer)  # PyTorch scheduler
             self.model.train()
             optimizer.zero_grad()
-
             tsfm = self.model.bert
 
             for child in tsfm.children():
@@ -104,7 +100,7 @@ class Training:
                     param.requires_grad = False
             frozen = True
 
-            for epoch in tqdm(range(self.epoches), desc="Epoch"):
+            for epoch in tqdm(range(self.epochs), desc="Epoch"):
                 self.model.train()
                 if epoch > 0 and frozen:
                     for child in tsfm.children():
@@ -118,10 +114,11 @@ class Training:
                     input_ids = xb_train[:, 0, :].to(self.device)
                     input_mask = xb_train[:, 1, :].to(self.device)
                     segment_ids = xb_train[:, 2, :].to(self.device)
-                    intent_label = yb_train.to(self.device)
+                    ner_ids = xb_train[:, 3, :].to(self.device)
+                    label = yb_train.to(self.device)
 
-                    logits = self.model(input_ids, input_mask, segment_ids)
-                    loss_s = self.loss_c(logits.view(-1, self.model.num_classes), intent_label.view(-1))
+                    logits = self.model(input_ids, input_mask, segment_ids, ner_ids)
+                    loss_s = self.loss_c(logits.view(-1, self.model.num_classes), label.view(-1))
 
                     total_loss = loss_s.item() / (i + 1)
                     loss_s.backward()
@@ -156,9 +153,10 @@ class Training:
                 input_ids = x_train[:, 0, :].to(self.device)
                 input_mask = x_train[:, 1, :].to(self.device)
                 segment_ids = x_train[:, 2, :].to(self.device)
+                ner_ids = x_train[:, 3, :].to(self.device)
                 label_id = y_train.to(self.device)
 
-                logits = self.model(input_ids, input_mask, segment_ids)
+                logits = self.model(input_ids, input_mask, segment_ids, ner_ids)
                 predictions = torch.argmax(softmax(logits, 1), 1)
 
                 total += logits.size(0)
