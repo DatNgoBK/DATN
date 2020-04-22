@@ -85,7 +85,7 @@ class Training:
                 {'params': [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)], 'weight_decay': 0.01},
                 {'params': [p for n, p in param_optimizer if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
             ]
-            num_train_optimization_steps = int(self.epochs * len(dataset_train) / 2)
+            num_train_optimization_steps = int(self.epochs * len(dataset_train) / 5)
             optimizer = AdamW(optimizer_grouped_parameters, lr=self.lr, correct_bias=False)  # To reproduce BertAdam specific behavior set correct_bias=False
             scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=100, num_training_steps=num_train_optimization_steps)  # PyTorch scheduler
             scheduler0 = get_constant_schedule(optimizer)  # PyTorch scheduler
@@ -125,7 +125,7 @@ class Training:
                     if i!=0 and i%100==0:
                         self.logger.info('Loss average:{}'.format(total_loss))
 
-                    if i % 2 == 0 or len(dataset_train) - 1 == i:
+                    if i % 5 == 0 or len(dataset_train) - 1 == i:
                         optimizer.step()
                         optimizer.zero_grad()
                         if not frozen:
