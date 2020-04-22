@@ -51,7 +51,7 @@ class Training:
         X_train = [(input_id, input_mask, segment_id, ner_id) for (input_id, input_mask, segment_id, ner_id) in zip (input_ids, input_masks, segment_ids, ner_ids)]
         X_train = np.array(X_train)
         y_train = np.array(labels_id)
-        X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=0.2, random_state=2018, stratify=y_train)
+        X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=0.15, random_state=2018, stratify=y_train)
 
         return X_train, y_train, X_test, y_test
 
