@@ -25,7 +25,7 @@ config['max_seq_length'] = 256
 zalo = ZaloDatasetProcessor()
 zalo.load_from_path(dataset_path='dataset', train_filename='train.json', test_filename='test.json', dev_filename=None)
 tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
-toolkit = VnCoreNLP('VnCoreNLP-master/VnCoreNLP-1.1.1.jar', annotators='wseg,pos,ner,parse', max_heap_size='-Xmx2g')
+toolkit = VnCoreNLP('/home/ducnd/nhatnguyen/new2_folder/DATN/ZaloQA_DATN/VnCoreNLP/VnCoreNLP-1.1.1.jar', annotators='wseg,pos,ner,parse', max_heap_size='-Xmx2g')
 zalo.convert_examples_to_features(zalo.train_data, zalo.label_list, 256, tokenizer)
 zalo.convert_examples_to_vietnamese_features(zalo.train_data, zalo.label_list, 256, toolkit)
 
