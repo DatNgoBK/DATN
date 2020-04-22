@@ -548,3 +548,4 @@
 04/21/2020 20:55:52 - INFO - __main__ -   F1 score : 0.664113785557987
 04/21/2020 20:56:40 - INFO - __main__ -   Valid acc:0.7998274374460742
 04/21/2020 20:56:40 - INFO - __main__ -   F1 score : 0.6647398843930635
+04/21/2020 21:07:16 - INFO - transformers.tokenization_utils -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased-vocab.txt from cache at /home/ducnd/.cache/torch/transformers/96435fa287fbf7e469185f1062386e05a075cadbf6838b74da22bf64b080bc32.99bcd55fc66f4f3360bc49ba472b940b8dcf223ea6a345deb969d607ca900729

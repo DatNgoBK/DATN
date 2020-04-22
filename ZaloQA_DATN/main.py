@@ -15,7 +15,7 @@ init_logger()
 logger = logging.getLogger(__name__)
 
 config = {}
-config['batch_size'] = 8
+config['batch_size'] = 16
 config['epochs'] = 5
 config['lr'] = 4e-5
 config['max_seq_length'] = 256
@@ -25,7 +25,7 @@ config['max_seq_length'] = 256
 zalo = ZaloDatasetProcessor()
 zalo.load_from_path(dataset_path='dataset', train_filename='train.json', test_filename='test.json', dev_filename=None)
 tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
-toolkit = VnCoreNLP('/home/datngo/Desktop/Git/ZaloQA_DATN/VnCoreNLP-master/VnCoreNLP-1.1.1.jar', annotators='wseg,pos,ner,parse', max_heap_size='-Xmx2g')
+toolkit = VnCoreNLP('VnCoreNLP-master/VnCoreNLP-1.1.1.jar', annotators='wseg,pos,ner,parse', max_heap_size='-Xmx2g')
 zalo.convert_examples_to_features(zalo.train_data, zalo.label_list, 256, tokenizer)
 zalo.convert_examples_to_vietnamese_features(zalo.train_data, zalo.label_list, 256, toolkit)
 
