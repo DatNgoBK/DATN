@@ -8,10 +8,11 @@ import torch
 class Classifier(nn.Module):
     def __init__(self, input_dim, num_classes):
         super(Classifier, self).__init__()
+        self.dropout = nn.Dropout(0.3)
         self.linear = nn.Linear(input_dim, num_classes)
 
     def forward(self, x):
-        return self.linear(x)
+        return self.linear(self.dropout(x))
 
 
 class QAModel(nn.Module):
