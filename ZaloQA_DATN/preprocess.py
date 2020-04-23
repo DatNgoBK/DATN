@@ -6,6 +6,7 @@ import random
 import math
 from transformers import BertTokenizer
 
+
 random.seed(0)
 
 
@@ -44,7 +45,10 @@ class InputFeatures(object):
         self.label_id = label_id
         self.is_real_example = is_real_example
 
+class VietnameseFeatures(object):
 
+    def __init__(self, ner_ids):
+        self.ner_ids = ner_ids
 
 class ZaloDatasetProcessor(object):
     """ Base class to process & store input data for the Zalo AI Challenge dataset"""
@@ -108,7 +112,7 @@ class ZaloDatasetProcessor(object):
         # Get augmented training data (if any), convert to InputExample
         if train_augmented_filename:
             train_data_augmented = read_to_inputexamples(filepath=join(dataset_path, train_augmented_filename),
-                                                         encode=encode)
+                                                         encode='utf-8-sig')
             random.shuffle(train_data_augmented)
             self.train_data.extend(train_data_augmented)
 
@@ -252,10 +256,80 @@ class ZaloDatasetProcessor(object):
             :parameter max_seq_length: The maximum input sequence length for embedding
             :parameter tokenizer: A BERT-based tokenier to tokenize text
         """
+
         features = []
         for (ex_index, example) in enumerate(examples):
             feature = self._convert_single_example(example, label_list, max_seq_length, tokenizer)
             features.append(feature)
-        return features
 
+        self.features = features
+
+    def _convert_single_example_(self, seq_ner):
+        ner_ids = []
+        for ner in seq_ner:
+            ner_ids.append(self.ner2id[ner])
+        return VietnameseFeatures(ner_ids)
     
+    def convert_examples_to_vietnamese_features(self, examples, label_list, max_seq_length, toolkit):
+        self.ner2id = {}
+        self.vocab = set()
+
+        def _truncate_seq_pair_(tokens_a, tokens_b, max_length):
+            """Truncates a sequence pair in place to the maximum length."""
+
+            # This is a simple heuristic which will always truncate the longer sequence
+            # one token at a time. This makes more sense than truncating an equal percent
+            # of tokens from each, since if one sequence is very short then each token
+            # that's truncated likely contains more information than a longer sequence.
+            while True:
+                total_length = len(tokens_a) + len(tokens_b)
+                if total_length <= max_length:
+                    break
+                if len(tokens_a) > len(tokens_b):
+                    tokens_a.pop()
+                else:
+                    tokens_b.pop()
+
+        seq_ners = []
+        for (ex_index, example) in enumerate(examples):
+            ques_ner_tokens = []
+            for sen in toolkit.ner(example.question):
+                for word, ner in sen:
+                    ques_ner_tokens.append(ner)
+
+            
+            text_ner_tokens = []
+            if example.text:
+                text_ner_tokens = []
+                for sen in toolkit.ner(example.text):
+                    for word, ner in sen:
+                        text_ner_tokens.append(ner)
+
+            if text_ner_tokens:
+                # Modifies `tokens_a` and `tokens_b` in place so that the total
+                # length is less than the specified length.
+                # Account for [CLS], [SEP], [SEP] with "- 3"
+                _truncate_seq_pair_(ques_ner_tokens, text_ner_tokens, max_seq_length)
+            else:
+                # Account for [CLS] and [SEP] with "- 2"
+                if len(ques_ner_tokens) > max_seq_length:
+                    ques_ner_tokens = ques_ner_tokens[0:(max_seq_length)]
+
+            ques_ner_tokens.extend(text_ner_tokens)
+            if len(ques_ner_tokens) < max_seq_length:
+                while len(ques_ner_tokens) < max_seq_length:
+                    ques_ner_tokens.append('O')
+            seq_ner = ques_ner_tokens
+            seq_ners.append(seq_ner)
+            self.vocab.update(seq_ner)   
+        
+        for id_, ner in enumerate(self.vocab):
+            self.ner2id[ner] = id_
+
+        vietnamese_features = []
+        for (ex_index, seq_ner) in enumerate(seq_ners):
+            feature = self._convert_single_example_(seq_ner)
+            vietnamese_features.append(feature)  
+        
+        self.vietnamese_features = vietnamese_features
+            
