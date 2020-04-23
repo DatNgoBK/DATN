@@ -43,13 +43,13 @@ class QAModel(nn.Module):
         seq_output = self.embeddings(ner_ids)
         lstm_input = seq_output.permute(1, 0, 2)
         outputs_, states = self.lstm(lstm_input)
-        outputs_ = outputs_.permute(1, 0, 2)
-        outputs_ = self.out_lstm(outputs_)
+        outputs_fn = outputs_.permute(1, 0, 2)
+        outputs_at = self.out_lstm(outputs_fn)
        # cat_v = torch.cat((pool_output, outputs_), 2)
        # out_at = self.fn1(cat_v)
-        attn_out = self.fn2(torch.tanh(outputs_))
+        attn_out = self.fn2(torch.tanh(outputs_at))
         scores = softmax(attn_out, 1)
-        context_vec = scores * outputs_
+        context_vec = scores * outputs_fn
         context_vec =  torch.sum(context_vec, axis=1)
         cat_v = torch.cat((pool_output, context_vec), 1)
         logits = self.classifier(cat_v)

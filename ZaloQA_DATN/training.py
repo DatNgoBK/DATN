@@ -40,6 +40,7 @@ class Training:
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.best_sc = 0
         self.loss_c = nn.MSELoss() if self.model.num_classes == 1 else nn.CrossEntropyLoss()
+        self.tsfm = model.bert
 
     def prepare_dataset_for_train_valid(self, features, vietnamese_features):
         input_ids = [feature.input_ids for feature in features]
@@ -91,9 +92,8 @@ class Training:
             scheduler0 = get_constant_schedule(optimizer)  # PyTorch scheduler
             self.model.train()
             optimizer.zero_grad()
-            tsfm = self.model.bert
 
-            for child in tsfm.children():
+            for child in self.tsfm.children():
                 for param in child.parameters():
                     if not param.requires_grad:
                         print("whoopsies")
@@ -103,7 +103,7 @@ class Training:
             for epoch in tqdm(range(self.epochs), desc="Epoch"):
                 self.model.train()
                 if epoch > 0 and frozen:
-                    for child in tsfm.children():
+                    for child in self.tsfm.children():
                         for param in child.parameters():
                             param.requires_grad = True
                     frozen = False
